@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Clicker</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #282c34;
+        color: aliceblue;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .upgrades {
+        padding: 0.75rem;
+        background-color: #373d48;
+        border-radius: 1rem;
+      }
+
+      .default-button {
+        cursor: pointer;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+      }
+
+      #farm-button {
+        margin: 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1 id="title">Aura Clicker</h1>
+      </header>
+      <section>
+        <p class="default-text" id="aura-text">Auras farmadas: 0</p>
+        <p class="default-text" id="cost-text">Custo de melhoria: 2</p>
+        <button class="default-button" onclick="farmAura()" id="farm-button">
+          Farmar Aura
+        </button>
+
+        <div class="upgrades">
+          <label for="+2-click">+2 Auras</label>
+          <button
+            class="default-button"
+            id="2x-click"
+            onclick="upgrade('click')"
+          >
+            Melhorar
+          </button>
+        </div>
+        <p class="rebirth">Rebirth: 0</p>
+        <p id="rebirth-infos"></p>
+      </section>
+      <footer>
+        <p class="small-text">Clique no botão para farmar aura!</p>
+      </footer>
+    </div>
+    <script src="./scripts/rebirths.js"></script>
+    <script>
+      var auras = 0;
+      var multiplier = 1;
+      var costValue = 2;
+
+      const auraText = document.getElementById("aura-text");
+      const costElement = document.getElementById("cost-text");
+      const upgradeButton = {
+        click: document.getElementById("2x-click"),
+      };
+
+      function farmAura() {
+        auras = auras + multiplier;
+        auraText.innerHTML = "Auras farmadas: " + auras;
+      }
+
+      function upgrade(upgradeType) {
+        switch (upgradeType) {
+          case "click":
+            if (auras > costValue) {
+              multiplier = multiplier + 2;
+              costValue = costValue * 2;
+              auras = auras - costValue;
+              if (auras < 0) {
+                auras = 0;
+              }
+              auraText.innerHTML = "Auras farmadas: " + auras;
+              costElement.innerHTML = "Custo de melhoria: " + costValue;
+            }
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
