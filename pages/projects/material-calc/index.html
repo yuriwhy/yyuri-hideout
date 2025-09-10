@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Experimental</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import "@material/web/all.js";
+      import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
+
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="calculadora">
+      <h1 class="md-typescale-display-large">Operações</h1>
+      <div class="inputs">
+        <md-outlined-text-field
+          label="1º Número"
+          type="number"
+          id="num1"
+        ></md-outlined-text-field>
+        <md-outlined-text-field
+          label="2º Número"
+          type="number"
+          id="num2"
+        ></md-outlined-text-field>
+      </div>
+      <p class="md-typescale-display-small" id="saida"></p>
+
+      <div class="botoes">
+        <h4 class="md-typescale-display-small">Operações Básicas</h4>
+        <md-elevated-button onclick="calc('soma')">Somar</md-elevated-button>
+        <md-elevated-button onclick="calc('subt')">Subtrair</md-elevated-button>
+        <md-elevated-button onclick="calc('mult')"
+          >Multiplicar</md-elevated-button
+        >
+        <md-elevated-button onclick="calc('div')">Dividir</md-elevated-button>
+
+        <h4 class="md-typescale-display-small">Outras Operações</h4>
+        <md-elevated-button onclick="calc('mod')">Módulo</md-elevated-button>
+        <md-elevated-button onclick="calc('pot')">Potência</md-elevated-button>
+        <md-elevated-button onclick="calc('raiz')">Raiz</md-elevated-button>
+        <md-elevated-button onclick="calc('abs')">Absoluto</md-elevated-button>
+
+        <h4 class="md-typescale-display-small">Conversões</h4>
+        <md-elevated-button onclick="calc('gbtomb')"
+          >GB para MB</md-elevated-button
+        >
+        <md-elevated-button onclick="calc('mbtogb')"
+          >MB para GB</md-elevated-button
+        >
+      </div>
+      <p class="md-typescale-display-small" id="info">
+        Obs: Raiz, Absoluto e as conversões aplicam-se apenas ao
+        <strong>primeiro</strong> número.
+      </p>
+      <p class="md-typescale-display-small" id="info">Por YYuri</p>
+    </div>
+
+    <script src="script/script.js"></script>
+  </body>
+</html>

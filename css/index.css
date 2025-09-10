@@ -40,6 +40,7 @@ a:hover {
 .title {
   font-size: 8.25rem;
   color: var(--text-color);
+  line-height: 7rem;
 }
 
 .subtitle {
